@@ -23,6 +23,9 @@
 # HTML file
 *.html
 
+# DS_Store file
+*.DS_Store
+
 #target folder
 /target
 
