@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-04-05T18:33:53Z" name="Suite" finished-at="2023-04-05T18:34:19Z" duration-ms="26491">
+    <groups>
+      <group name="Smoke">
+        <method signature="eCommerce_tc_2.AddItemToCartTest()[pri:0, instance:appiumBasics.eCommerce_tc_2@600b90df]" name="AddItemToCartTest" class="appiumBasics.eCommerce_tc_2"/>
+      </group> <!-- Smoke -->
+    </groups>
+    <test started-at="2023-04-05T18:33:53Z" name="Error Validations Test" finished-at="2023-04-05T18:34:19Z" duration-ms="26491">
+      <class name="appiumBasics.eCommerce_tc_2">
+        <test-method is-config="true" signature="ConfigureAppium()[pri:0, instance:appiumBasics.eCommerce_tc_2@600b90df]" started-at="2023-04-05T18:33:53Z" name="ConfigureAppium" finished-at="2023-04-05T18:34:00Z" duration-ms="6681" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfigureAppium -->
+        <test-method signature="AddItemToCartTest()[pri:0, instance:appiumBasics.eCommerce_tc_2@600b90df]" started-at="2023-04-05T18:34:00Z" name="AddItemToCartTest" finished-at="2023-04-05T18:34:19Z" duration-ms="19599" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddItemToCartTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:appiumBasics.eCommerce_tc_2@600b90df]" started-at="2023-04-05T18:34:19Z" name="tearDown" finished-at="2023-04-05T18:34:19Z" duration-ms="192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- appiumBasics.eCommerce_tc_2 -->
+    </test> <!-- Error Validations Test -->
+  </suite> <!-- Suite -->
+</testng-results>
