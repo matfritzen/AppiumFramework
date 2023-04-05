@@ -10,9 +10,9 @@ import org.openqa.selenium.Keys;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.android.CartPage;
-import pages.android.FormPage;
-import pages.android.ProductCataloguePage;
+import pages.android.GeneralStore.CartPage;
+import pages.android.GeneralStore.FormPage;
+import pages.android.GeneralStore.ProductCataloguePage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
