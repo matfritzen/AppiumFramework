@@ -1,10 +1,11 @@
-package pages.android;
+package pages.android.GeneralStore;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.android.BasePageAndroid;
 
 import java.net.MalformedURLException;
 import java.net.URL;

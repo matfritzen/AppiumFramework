@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.android.FormPage;
+import pages.android.GeneralStore.FormPage;
 
 import java.net.MalformedURLException;
 import java.net.URL;

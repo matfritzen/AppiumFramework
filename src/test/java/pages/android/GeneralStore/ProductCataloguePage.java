@@ -1,9 +1,11 @@
-package pages.android;
+package pages.android.GeneralStore;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.android.BasePageAndroid;
+import pages.android.GeneralStore.CartPage;
 
 import java.util.List;
 
