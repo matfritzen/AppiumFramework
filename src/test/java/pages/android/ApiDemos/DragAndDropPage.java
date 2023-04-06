@@ -19,8 +19,6 @@ public class DragAndDropPage extends BasePageAndroid {
 
     public void dragAndDropTheImage(){
         jsDragAndDrop(source,837, 739);
-
-//        WebElement message = driver.findElement(By.id("io.appium.android.apis:id/drag_result_text"));
         wait.until(ExpectedConditions.textToBePresentInElement(message,"Dropped!"));
     }
 
