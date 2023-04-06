@@ -25,7 +25,7 @@ public class eCommerce_tc_1 extends AndroidBaseTest {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("MobileAutomationPhone");
         options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-        options.setApp("//Users//matheusfritzen//AutomationProjects//MobileAutomation//src//test//java//resources//apk//General-Store.apk");
+        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/"), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
@@ -38,9 +38,7 @@ public class eCommerce_tc_1 extends AndroidBaseTest {
         formPage.setGender("Female");
         formPage.setGender("Male");
         formPage.clickLetsShopBtn();
-
-        String toastMessage = driver.findElement(By.xpath("(//android.widget.Toast)[1]")).getAttribute("name");
-        Assert.assertEquals(toastMessage, "Please enter your name");
+        formPage.verifyErrorMessageEmptyName();
 
     }
 

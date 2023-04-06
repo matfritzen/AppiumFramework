@@ -65,6 +65,8 @@ public class eCommerce_tc_4_hybrid extends AndroidBaseTest {
         cartPage.validateCartTotalAmount();
 //        cartPage.acceptTermsAndConditions();
         cartPage.submitOrder();
+
+
         Thread.sleep(6000);
 
         // hybrid app
@@ -92,7 +94,7 @@ public class eCommerce_tc_4_hybrid extends AndroidBaseTest {
     public Object[][] getData() throws IOException {
 
         List<HashMap<String,String>> data =  getJsonData(System.getProperty("user.dir")+"//src//test//java//resources//files//json//eCommerce.json");
-        return new Object[][] {{data.get(0)}};
+        return new Object[][] {{data.get(0)} /*, {data.get(1)}*/};
 
     }
 
