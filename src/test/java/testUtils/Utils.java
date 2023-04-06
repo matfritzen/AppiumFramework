@@ -56,9 +56,9 @@ public class Utils {
 
     }
 
-    public void waitForElementToAppear(WebElement element, AppiumDriver driver){
+    public void waitForElementToAppear(WebElement element, AppiumDriver driver, String text){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.attributeContains((element),"text","Cart"));
+        wait.until(ExpectedConditions.attributeContains((element),"text",text));
 
     }
 

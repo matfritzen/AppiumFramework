@@ -34,4 +34,13 @@ public class BasePageAndroid extends Utils {
                 "elementId", ((RemoteWebElement) element).getId(),"duration",2000));
     }
 
+    public void jsDragAndDrop(WebElement element, int endX, int endY){
+
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "endX", endX,
+                "endY", endY
+        ));
+    }
+
 }
