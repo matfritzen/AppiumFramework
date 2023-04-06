@@ -50,8 +50,8 @@ public class AndroidBaseTest extends Utils {
 
 
         options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-        options.setApp("//Users//matheusfritzen//AutomationProjects//MobileAutomation//src//test//java//resources//apk//ApiDemos-debug.apk");
-//        options.setApp("//Users//matheusfritzen//AutomationProjects//MobileAutomation//src//test//java//resources//apk//General-Store.apk");
+        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
+//        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
 
 
         // Appium Code -> Appium Server -> Mobile
