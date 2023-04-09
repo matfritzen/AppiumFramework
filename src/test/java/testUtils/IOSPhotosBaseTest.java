@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class IOSBaseTest extends Utils {
+public class IOSPhotosBaseTest extends Utils {
 
     public IOSDriver driver;
     public AppiumDriverLocalService service;
@@ -39,24 +39,9 @@ public class IOSBaseTest extends Utils {
         service = startAppiumServer(ipAddress,port);
 
         XCUITestOptions options = new XCUITestOptions();
+
         options.setDeviceName(deviceName); // Emulator
-
-
-        // Real Device
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//
-//        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
-//        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
-//        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
-//
-//        capabilities.setCapability("xcodeOrgId", ""); // you should ask to the Team about the orgId
-//        capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-//        capabilities.setCapability("udid", ""); // udid is tied up to real device, you should connect the phone on Mac via cable, and in iTunes app you can get the udid
-//        capabilities.setCapability("updateWDABundleId", ""); // you should ask about the bundle id to the team
-
-
-//        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/UIKitCatalog.app");
-        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/TestApp 3.app");
+        options.setApp("com.apple.mobileslideshow");
         options.setPlatformVersion("16.2");
 
         // Appium -> Webdriver Agent -> IOS Apps.
@@ -70,6 +55,9 @@ public class IOSBaseTest extends Utils {
          homePage = new HomePage(driver);
          testAppPage = new TestAppPage(driver);
     }
+
+
+
 
     @AfterClass(alwaysRun = true)
     public void tearDown(){

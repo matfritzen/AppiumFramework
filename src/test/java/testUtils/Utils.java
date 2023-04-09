@@ -3,12 +3,12 @@ package testUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -69,5 +69,13 @@ public class Utils {
         FileUtils.copyFile(source,new File(destinationFile));
         return destinationFile;
     }
+
+    public void addScreenshot(Scenario scenario, AppiumDriver driver) throws IOException {
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
+        scenario.attach(fileContent, "image/png", "screenshot");
+
+    }
+
 
 }

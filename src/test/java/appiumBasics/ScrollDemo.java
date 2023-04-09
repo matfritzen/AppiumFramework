@@ -1,5 +1,6 @@
 package appiumBasics;
 
+import pages.android.ApiDemos.ViewsPage;
 import testUtils.AndroidBaseTest;
 import io.appium.java_client.AppiumBy;
 import org.testng.annotations.Test;
@@ -11,12 +12,12 @@ public class ScrollDemo extends AndroidBaseTest {
     @Test
     public void ScrollDemoTest() throws IOException, InterruptedException {
 
-        driver.findElement(AppiumBy.accessibilityId("Views")).click();
-//        androidScrollByText("WebView");
-//        jsScrollDown(5.0);
-//        jsScrollUp(10.0);
-//        jsScrollUntilTheEndOfTheScreen();
-//        jsScrollUntilTheTopOfTheScreen();
+        ViewsPage viewsPage = homePage.clickViewsOption();
+        viewsPage.androidScrollByText("WebView");
+        viewsPage.jsScrollDown(5.0);
+        viewsPage.jsScrollUp(10.0);
+        viewsPage.jsScrollUntilTheEndOfTheScreen();
+        viewsPage.jsScrollUntilTheTopOfTheScreen();
 
     }
 

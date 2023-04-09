@@ -2,13 +2,17 @@ package testUtils;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.cucumber.java.Before;
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.*;
+import pages.android.ApiDemos.HomePage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,8 +24,11 @@ public class AndroidBaseTest extends Utils {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
 
+    public HomePage homePage;
+
 
     @BeforeClass(alwaysRun = true)
+    @Before()
     public void ConfigureAppium() throws IOException {
 
         Properties prop = new Properties();
@@ -50,13 +57,14 @@ public class AndroidBaseTest extends Utils {
 
 
         options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-//        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
-        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
+        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
+//        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
 
 
         // Appium Code -> Appium Server -> Mobile
          driver = new AndroidDriver(service.getUrl(), options);
          driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+         homePage = new HomePage(driver);
 
     }
 
@@ -69,69 +77,9 @@ public class AndroidBaseTest extends Utils {
                 "elementId", ((RemoteWebElement) element).getId(),"duration",2000));
     }
 
-    public void androidScrollByText(String text){
-        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));"));
-    }
-
-    public void jsScrollDown(Double percentage){
-        ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                "left", 100, "top", 100, "width", 200, "height", 200,
-                "direction", "down",
-                "percent", percentage
-        ));
-    }
-
-    public void jsScrollUp(Double percentage){
-        boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                "left", 100, "top", 500, "width", 200, "height", 200,
-                "direction", "up",
-                "percent", percentage
-        ));
-    }
-
-    public void jsScrollUntilTheEndOfTheScreen(){
-
-        boolean canScrollMore;
-
-       do {
-           canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                   "left", 100, "top", 100, "width", 200, "height", 200,
-                   "direction", "down",
-                   "percent", 10.0
-           ));
-       }
-       while (canScrollMore);
-
-    }
-
-    public void jsScrollUntilTheTopOfTheScreen(){
-
-        boolean canScrollMore;
-
-        do {
-            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                    "left", 100, "top", 500, "width", 200, "height", 200,
-                    "direction", "up",
-                    "percent", 10.0
-            ));
-        }
-        while (canScrollMore);
-
-    }
-
-    public void jsSwipeByElementId(WebElement element, String direction){
-
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-//                "left", 100, "top", 100, "width", 200, "height", 200,
-                "elementId", ((RemoteWebElement) element).getId(),
-                "direction", direction,
-                "percent", 0.75
-        ));
-    }
-
-    public Double getFormatterAmount(String amount){
-        Double price = Double.parseDouble(amount.substring(1));
-        return price;
+    public void deviceRotation(){
+        DeviceRotation landScape = new DeviceRotation(0, 0, 90);
+        driver.rotate(landScape);
     }
 
 

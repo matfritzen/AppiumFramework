@@ -1,6 +1,7 @@
 package appiumBasics;
 
 import pages.android.ApiDemos.PreferenceDependenciesPage;
+import pages.android.ApiDemos.PreferencePage;
 import testUtils.AndroidBaseTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
@@ -23,10 +24,9 @@ public class appiumBasics extends AndroidBaseTest {
     public void WifiSettingName() throws IOException {
 
         // Selectors available for Android: xpath, id, accessibilityId, classname, androidUIAutomator
-        driver.findElement(AppiumBy.accessibilityId("Preference")).click();
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+        PreferencePage preferencePage = homePage.clickPreferenceOption();
 
-        PreferenceDependenciesPage preferenceDependenciesPage = new PreferenceDependenciesPage(driver);
+        PreferenceDependenciesPage preferenceDependenciesPage = preferencePage.clickPreferenceDependencies();
 
         preferenceDependenciesPage.clickWifiCheckbox();
         preferenceDependenciesPage.clickWifiSettings();

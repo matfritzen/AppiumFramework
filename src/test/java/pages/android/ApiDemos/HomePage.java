@@ -15,11 +15,21 @@ public class HomePage extends BasePageAndroid {
     @AndroidFindBy(accessibility = "Views")
     private WebElement views;
 
+    @AndroidFindBy(accessibility = "Preference")
+    private WebElement preference;
+
+
+
     public HomePage(AndroidDriver driver){super(driver);}
 
     public ViewsPage clickViewsOption(){
         views.click();
         return new ViewsPage(driver);
+    }
+
+    public PreferencePage clickPreferenceOption(){
+        preference.click();
+        return new PreferencePage(driver);
     }
 
 

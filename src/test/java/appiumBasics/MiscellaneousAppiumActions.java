@@ -1,5 +1,7 @@
 package appiumBasics;
 
+import org.testng.annotations.BeforeMethod;
+import pages.android.ApiDemos.PreferenceDependenciesPage;
 import testUtils.AndroidBaseTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
@@ -14,6 +16,13 @@ import java.io.IOException;
 
 public class MiscellaneousAppiumActions extends AndroidBaseTest {
 
+    @BeforeMethod
+    public void preSetup(){
+        Activity activity = new Activity("io.appium.android.apis","io.appium.android.apis.preference.PreferenceDependencies");
+        driver.startActivity(activity);
+
+    }
+
     @Test
     public void Miscellanous() throws IOException {
 
@@ -21,25 +30,20 @@ public class MiscellaneousAppiumActions extends AndroidBaseTest {
         //adb shell dumpsys window | find -E 'mCurrentFocus'    - This command is for Windows
 
         // Selectors available for Android: xpath, id, accessibilityId, classname, androidUIAutomator
-        Activity activity = new Activity("io.appium.android.apis","io.appium.android.apis.preference.PreferenceDependencies");
-        driver.startActivity(activity);
-        driver.findElement(By.id("android:id/checkbox")).click();
-        DeviceRotation landScape = new DeviceRotation(0, 0, 90);
-        driver.rotate(landScape);
-        driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click();
+        PreferenceDependenciesPage preferenceDependenciesPage = new PreferenceDependenciesPage(driver);
+        preferenceDependenciesPage.clickWifiCheckbox();
+        deviceRotation();
 
-        String alertTitle = driver.findElement(By.id("android:id/alertTitle")).getText();
-        Assert.assertEquals(alertTitle, "WiFi settings");
+
+        preferenceDependenciesPage.clickWifiSettings();
+
+        preferenceDependenciesPage.verifyAlertTitle();
 
         driver.setClipboardText("Matheus Wifi");
 
-        driver.findElement(By.id("android:id/edit")).sendKeys(driver.getClipboardText());
-        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-        driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
+        preferenceDependenciesPage.fillWifiName(driver.getClipboardText());
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
         driver.pressKey(new KeyEvent(AndroidKey.HOME));
-
-
 
     }
 

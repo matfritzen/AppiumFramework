@@ -3,7 +3,7 @@ package appiumBasics;
 import testUtils.IOSBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ios.AlertViewPage;
+import pages.ios.UIKitCatalogue.AlertViewPage;
 
 public class IOSBasics extends IOSBaseTest {
 

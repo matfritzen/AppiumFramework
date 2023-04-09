@@ -43,4 +43,60 @@ public class BasePageAndroid extends Utils {
         ));
     }
 
+    public void jsSwipeByElementId(WebElement element, String direction){
+
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+//                "left", 100, "top", 100, "width", 200, "height", 200,
+                "elementId", ((RemoteWebElement) element).getId(),
+                "direction", direction,
+                "percent", 0.75
+        ));
+    }
+
+    public void jsScrollDown(Double percentage){
+        ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                "left", 100, "top", 100, "width", 200, "height", 200,
+                "direction", "down",
+                "percent", percentage
+        ));
+    }
+
+    public void jsScrollUp(Double percentage){
+        boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                "left", 100, "top", 500, "width", 200, "height", 200,
+                "direction", "up",
+                "percent", percentage
+        ));
+    }
+
+    public void jsScrollUntilTheEndOfTheScreen(){
+
+        boolean canScrollMore;
+
+        do {
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left", 100, "top", 100, "width", 200, "height", 200,
+                    "direction", "down",
+                    "percent", 10.0
+            ));
+        }
+        while (canScrollMore);
+
+    }
+
+    public void jsScrollUntilTheTopOfTheScreen(){
+
+        boolean canScrollMore;
+
+        do {
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left", 100, "top", 500, "width", 200, "height", 200,
+                    "direction", "up",
+                    "percent", 10.0
+            ));
+        }
+        while (canScrollMore);
+
+    }
+
 }

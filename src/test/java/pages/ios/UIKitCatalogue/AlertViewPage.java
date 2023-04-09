@@ -1,10 +1,11 @@
-package pages.ios;
+package pages.ios.UIKitCatalogue;
 
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebElement;
+import pages.ios.BasePageIOS;
 
-public class AlertViewPage extends BasePageIOS{
+public class AlertViewPage extends BasePageIOS {
 
     public AlertViewPage(IOSDriver driver){
         super(driver);
