@@ -42,12 +42,6 @@ public class BrowserBaseTest {
 
     }
 
-    public Double getFormatterAmount(String amount){
-        Double price = Double.parseDouble(amount.substring(1));
-        return price;
-    }
-
-
     @AfterClass
     public void tearDown(){
 

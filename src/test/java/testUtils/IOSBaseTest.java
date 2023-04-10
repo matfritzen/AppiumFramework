@@ -26,7 +26,7 @@ public class IOSBaseTest extends Utils {
 
 
     @BeforeClass(alwaysRun = true)
-    public void ConfigureAppium() throws IOException {
+    public void ConfigureAppiumIOS() throws IOException {
 
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//resources//files//properties//data.properties");
@@ -73,9 +73,7 @@ public class IOSBaseTest extends Utils {
 
     @AfterClass(alwaysRun = true)
     public void tearDown(){
-
         driver.quit();
         service.stop();
-
     }
 }

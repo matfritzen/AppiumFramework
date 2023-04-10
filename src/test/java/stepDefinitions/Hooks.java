@@ -8,6 +8,7 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.cucumber.java.*;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import pages.android.ApiDemos.HomePage;
@@ -32,19 +33,19 @@ public class Hooks extends Utils {
 
     public static boolean isIos;
 
-    public AppiumDriverLocalService service;
+    public static AppiumDriverLocalService service;
 
     private String deviceName;
 
     private String ipAddress;
     private int port;
 
-    private ArrayList<String> tags;
+    private static ArrayList<String> tags;
 
 
     //    @BeforeClass(alwaysRun = true)
     @Before()
-    public void ConfigureAppium(Scenario scenario) throws IOException {
+    public void ConfigureAppiumCucumber(Scenario scenario) throws IOException {
 
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//resources//files//properties//data.properties");
@@ -91,8 +92,8 @@ public class Hooks extends Utils {
 
 
             options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-            options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
-//        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
+//            options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
+        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
             androidDriver = new AndroidDriver(service.getUrl(), options);
             androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
@@ -115,8 +116,18 @@ public class Hooks extends Utils {
     }
 
 
-    public ArrayList<String> getTags(){
+    public static ArrayList<String> getTags(){
         return tags;
+    }
+
+    public static void deviceRotation(){
+        DeviceRotation landScape = new DeviceRotation(0, 0, 90);
+        if (Hooks.isAndroid){
+            Hooks.androidDriver.rotate(landScape);
+        }
+        else if (Hooks.isIos){
+            Hooks.iOSDriver.rotate(landScape);
+        }
     }
 
     @AfterStep

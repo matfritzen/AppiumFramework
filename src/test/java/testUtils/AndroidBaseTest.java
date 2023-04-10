@@ -27,9 +27,8 @@ public class AndroidBaseTest extends Utils {
     public HomePage homePage;
 
 
-    @BeforeClass(alwaysRun = true)
-    @Before()
-    public void ConfigureAppium() throws IOException {
+//    @BeforeClass(alwaysRun = true)
+    public void ConfigureAppiumAndroid() throws IOException {
 
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//resources//files//properties//data.properties");
@@ -68,22 +67,17 @@ public class AndroidBaseTest extends Utils {
 
     }
 
-    // gitHub with all the UIAutomator2 gestures
-    // https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md
-
-
-    public void longPressAction(WebElement element){
-        ((JavascriptExecutor)driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
-                "elementId", ((RemoteWebElement) element).getId(),"duration",2000));
-    }
-
-    public void deviceRotation(){
+        public void deviceRotation(){
         DeviceRotation landScape = new DeviceRotation(0, 0, 90);
         driver.rotate(landScape);
     }
 
+    // gitHub with all the UIAutomator2 gestures
+    // https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md
 
-    @AfterClass(alwaysRun = true)
+
+
+//    @AfterClass(alwaysRun = true)
     public void tearDown(){
         driver.quit();
         service.stop();
