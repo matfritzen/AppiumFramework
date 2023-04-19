@@ -1,7 +1,7 @@
-Feature: Validating Ecommerce Worflow
+@Android @Regression @Ecommerce
+Feature: Validating Ecommerce Workflow
 
 
-  @Android @Regression
   Scenario: Fill form correctly
     Given I select the country "Argentina"
     And I fill the Name field with "Test"
@@ -9,7 +9,7 @@ Feature: Validating Ecommerce Worflow
     When I click on Lets Shop button
     Then I verify user is on "Products" page
 
-  @Android @Regression
+
   Scenario: Fill form with no name
     Given I select the country "Argentina"
     And I select the gender "Female"
@@ -17,7 +17,6 @@ Feature: Validating Ecommerce Worflow
     Then I verify the error message for "user with no name"
 
 
-  @Android @Regression
   Scenario: Submit Order
     Given I fill the form correctly
     And I add the product "Air Jordan 4 Retro" in the cart
@@ -28,8 +27,6 @@ Feature: Validating Ecommerce Worflow
     Then I submit the order
 
 
-
-  @Android @Regression @Test
   Scenario: Hybrid Test
     Given I fill the form correctly
     And I add the product "Air Jordan 4 Retro" in the cart

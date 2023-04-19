@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.android;
 
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -81,7 +81,7 @@ public class EcommerceSteps {
                 productCataloguePage.verifyProductsPage();
                 break;
             default:
-                throw new Exception("This page does not exist");
+                throw new Exception("The "+pageName+" page does not exist");
         }
     }
 
@@ -92,7 +92,7 @@ public class EcommerceSteps {
                 formPage.verifyErrorMessageEmptyName();
                 break;
             default:
-                throw new Exception("This error cause does not exist");
+                throw new Exception("The "+errorCause+" error cause does not exist");
         }
     }
 
@@ -135,4 +135,5 @@ public class EcommerceSteps {
         // Returning the Context to the Application
         androidDriver.context("NATIVE_APP");
     }
+
 }

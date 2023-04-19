@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.android;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.android.ApiDemos.*;
+import stepDefinitions.Hooks;
 import testUtils.Utils;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class ApiDemosSteps{
                 break;
 
             default:
-                throw new Exception("This option is not available in the Home menu");
+                throw new Exception("The "+homeMenu+" option is not available in the Home menu");
         }
     }
 
@@ -56,7 +57,7 @@ public class ApiDemosSteps{
                 preferenceDependenciesPage = preferencePage.clickPreferenceDependencies();
                 break;
             default:
-                throw new Exception("This option is not available in the Preference menu");
+                throw new Exception("The "+preferenceMenu+" is not available in the Preference menu");
         }
     }
 
@@ -70,7 +71,7 @@ public class ApiDemosSteps{
                  expandableListsPage = viewsPage.clickExpandableLists();
                  break;
             default:
-                throw new Exception("This option is not available in the Views menu");
+                throw new Exception("The "+viewsMenu+" option is not available in the Views menu");
         }
     }
 
@@ -81,7 +82,7 @@ public class ApiDemosSteps{
                 preferenceDependenciesPage.clickWifiCheckbox();
                 break;
             default:
-                throw new Exception("This checkbox is not available in the screen");
+                throw new Exception("The "+checkboxName+" checkbox is not available in the screen");
         }
     }
 
@@ -107,7 +108,7 @@ public class ApiDemosSteps{
                 customAdapterPage = expandableListsPage.clickCustomAdapter();
                 break;
             default:
-                throw new Exception("This option is not available in the Expandable Lists menu");
+                throw new Exception("The "+expandableListsMenu+" option is not available in the Expandable Lists menu");
         }
     }
 
@@ -146,7 +147,7 @@ public class ApiDemosSteps{
                 customAdapterPage.validateSampleMenuTitle();
                 break;
             default:
-                throw new Exception("This title is not available in the screen");
+                throw new Exception("The "+titleName+" title is not available in the screen");
         }
     }
 

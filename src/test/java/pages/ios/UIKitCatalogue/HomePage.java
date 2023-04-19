@@ -21,9 +21,9 @@ public class HomePage extends BasePageIOS {
     @iOSXCUITFindBy(accessibility = "Picker View")
     private WebElement pickerView;
 
-    public AlertViewPage selectAlertView(){
+    public AlertViewsPage selectAlertView(){
         alertView.click();
-        return new AlertViewPage(driver);
+        return new AlertViewsPage(driver);
     }
 
     public SteppersPage selectSteppers(){

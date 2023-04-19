@@ -65,17 +65,39 @@ public class Hooks extends Utils {
         Collection<String> tagsCollection = scenario.getSourceTagNames();
         tags = new ArrayList<>(tagsCollection);
 
+        boolean isApiDemosApp = false;
+        boolean isEcommerceApp = false;
+        boolean isPhotoApp = false;
+        boolean isUiKitCatalogueApp = false;
+        boolean isTestApp3 = false;
+
         for (int i = 0; i < tags.size(); i++){
+            String tagName = tags.get(i);
 
             if(tags.get(i).equalsIgnoreCase("@Android")) {
                 isAndroid = true;
                 isIos = false;
-                break;
             }
             else if (tags.get(i).equalsIgnoreCase("@iOS")) {
                 isIos = true;
                 isAndroid = false;
             }
+            else if (tags.get(i).equalsIgnoreCase("@ApiDemos")){
+                isApiDemosApp = true;
+            }
+            else if (tags.get(i).equalsIgnoreCase("@Ecommerce")){
+                isEcommerceApp = true;
+            }
+            else if (tags.get(i).equalsIgnoreCase("@UiKitCatalogue")){
+                isUiKitCatalogueApp = true;
+            }
+            else if (tags.get(i).equalsIgnoreCase("@TestApp3")){
+                isTestApp3 = true;
+            }
+            else if (tags.get(i).equalsIgnoreCase("@Photos")){
+                isPhotoApp = true;
+            }
+
 
             service.stop();
         }
@@ -89,11 +111,15 @@ public class Hooks extends Utils {
             //Connect the Device in the computer (USB)
             //Access https://developer.chrome.com/docs/devtools/remote-debugging/ and follow the steps
 //        options.setDeviceName("Android Device");
-
-
             options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-//            options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
-        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
+
+            if (isApiDemosApp){
+                options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/ApiDemos-debug.apk");
+            }
+            else if (isEcommerceApp) {
+                options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
+            }
+
             androidDriver = new AndroidDriver(service.getUrl(), options);
             androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
@@ -103,7 +129,16 @@ public class Hooks extends Utils {
             XCUITestOptions options = new XCUITestOptions();
             options.setDeviceName(deviceName); // Emulator
 
-            options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/TestApp 3.app");
+            if (isUiKitCatalogueApp){
+                options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/UIKitCatalog.app");
+            }
+            else if(isTestApp3) {
+              options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/TestApp 3.app");
+            }
+            else if (isPhotoApp){
+                options.setApp("com.apple.mobileslideshow");
+            }
+
             options.setPlatformVersion("16.2");
 
             // Appium -> Webdriver Agent -> IOS Apps.
@@ -146,7 +181,7 @@ public class Hooks extends Utils {
 
 
     @After
-    public void tearDown(Scenario scenario) throws IOException {
+    public void tearDown() throws IOException {
 
         for (int i = 0; i < tags.size(); i++){
 
