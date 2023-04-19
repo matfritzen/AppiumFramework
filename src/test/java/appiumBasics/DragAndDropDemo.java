@@ -1,5 +1,8 @@
 package appiumBasics;
 
+import pages.android.ApiDemos.DragAndDropPage;
+import pages.android.ApiDemos.HomePage;
+import pages.android.ApiDemos.ViewsPage;
 import testUtils.AndroidBaseTest;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
@@ -14,16 +17,12 @@ public class DragAndDropDemo extends AndroidBaseTest {
     @Test
     public void DragDropTest() throws IOException, InterruptedException {
 
-        driver.findElement(AppiumBy.accessibilityId("Views")).click();
-        driver.findElement(AppiumBy.accessibilityId("Drag and Drop")).click();
+        HomePage homePage = new HomePage(driver);
+        ViewsPage viewsPage = homePage.clickViewsOption();
+        DragAndDropPage dragAndDropPage = viewsPage.clickDragAndDrop();
 
-        WebElement source = driver.findElement(By.id("io.appium.android.apis:id/drag_dot_1"));
-
-        jsDragAndDrop(source, 837, 739);
-        Thread.sleep(3000);
-
-        String result = driver.findElement(By.id("io.appium.android.apis:id/drag_result_text")).getText();
-        Assert.assertEquals(result, "Dropped!");
+        dragAndDropPage.dragAndDropTheImage();
+        dragAndDropPage.verifyResultMessage("Dropped!");
 
     }
 }

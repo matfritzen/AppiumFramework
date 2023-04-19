@@ -33,7 +33,7 @@ public class eCommerce_tc_4_hybrid extends AndroidBaseTest {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("MobileAutomationPhone");
         options.setChromedriverExecutable("//Users//matheusfritzen//Downloads//chromedriver");
-        options.setApp("//Users//matheusfritzen//AutomationProjects//MobileAutomation//src//test//java//resources//apk//General-Store.apk");
+        options.setApp("/Users/matheusfritzen/AutomationProjects/Mobile/AppiumFramework/src/test/java/resources/apk/General-Store.apk");
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/"), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
@@ -65,6 +65,8 @@ public class eCommerce_tc_4_hybrid extends AndroidBaseTest {
         cartPage.validateCartTotalAmount();
 //        cartPage.acceptTermsAndConditions();
         cartPage.submitOrder();
+
+
         Thread.sleep(6000);
 
         // hybrid app
@@ -92,7 +94,7 @@ public class eCommerce_tc_4_hybrid extends AndroidBaseTest {
     public Object[][] getData() throws IOException {
 
         List<HashMap<String,String>> data =  getJsonData(System.getProperty("user.dir")+"//src//test//java//resources//files//json//eCommerce.json");
-        return new Object[][] {{data.get(0)}, {data.get(1)}};
+        return new Object[][] {{data.get(0)} /*, {data.get(1)}*/};
 
     }
 

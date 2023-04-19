@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import pages.android.BasePageAndroid;
 import pages.android.GeneralStore.CartPage;
 
@@ -22,6 +23,10 @@ public class ProductCataloguePage extends BasePageAndroid {
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/appbar_btn_cart")
     private WebElement cartBtn;
+
+
+    @AndroidFindBy(id = "com.androidsample.generalstore:id/toolbar_title")
+    private WebElement productsTitlePage;
 
 
 
@@ -49,6 +54,10 @@ public class ProductCataloguePage extends BasePageAndroid {
         cartBtn.click();
         Thread.sleep(2000);
         return new CartPage(driver);
+    }
+
+    public void verifyProductsPage(){
+        Assert.assertTrue(productsTitlePage.isDisplayed());
     }
 
 

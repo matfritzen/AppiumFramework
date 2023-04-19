@@ -5,6 +5,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import pages.android.BasePageAndroid;
 
 import java.net.MalformedURLException;
@@ -30,6 +31,9 @@ public class FormPage extends BasePageAndroid {
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/btnLetsShop")
     private WebElement btnLetsShop;
+
+    @AndroidFindBy(xpath = "(//android.widget.Toast)[1]")
+    private WebElement errorMessage;
 
 
     public FormPage(AndroidDriver driver){
@@ -77,6 +81,12 @@ public class FormPage extends BasePageAndroid {
         }
 
     }
+
+    public void verifyErrorMessageEmptyName(){
+        String toastMessage = errorMessage.getAttribute("name");
+        Assert.assertEquals(toastMessage, "Please enter your name");
+    }
+
     public ProductCataloguePage clickLetsShopBtn(){
         btnLetsShop.click();
         return new ProductCataloguePage(driver);

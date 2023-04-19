@@ -1,12 +1,14 @@
-package pages.ios;
+package pages.ios.UIKitCatalogue;
 
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import pages.ios.BasePageIOS;
 
-public class AlertViewPage extends BasePageIOS{
+public class AlertViewsPage extends BasePageIOS {
 
-    public AlertViewPage(IOSDriver driver){
+    public AlertViewsPage(IOSDriver driver){
         super(driver);
     }
 
@@ -29,8 +31,11 @@ public class AlertViewPage extends BasePageIOS{
     private WebElement submit;
 
 
-    public void fillTextLabel(String name){
+    public void clickTextEntry(){
         textEntryMenu.click();
+    }
+
+    public void fillTextLabel(String name){
         textBox.sendKeys(name);
     }
 
@@ -45,6 +50,11 @@ public class AlertViewPage extends BasePageIOS{
 
     public void clickConfirmButton(){
         submit.click();
+    }
+
+    public void verifyConfirmMessage(){
+        String message = confirmMessage.getText();
+        Assert.assertEquals(message, "A message should be a short, complete sentence.");
     }
 
 }

@@ -3,7 +3,7 @@ package appiumBasics;
 import testUtils.IOSBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ios.AlertViewPage;
+import pages.ios.UIKitCatalogue.AlertViewsPage;
 
 public class IOSBasics extends IOSBaseTest {
 
@@ -11,11 +11,12 @@ public class IOSBasics extends IOSBaseTest {
     public void IOSBasics(){
 
         //IOS Locators: id, accessibility id, classname, xpath, IOS, iosClassChain, IOSPredicateString
-        AlertViewPage alertViewPage = homePage.selectAlertView();
+        AlertViewsPage alertViewsPage = homePage.selectAlertView();
 
         //iosClassChain is faster than xpath
-        alertViewPage.fillTextLabel("Hello World");
-        alertViewPage.clickAcceptPopUp();
+        alertViewsPage.clickTextEntry();
+        alertViewsPage.fillTextLabel("Hello World");
+        alertViewsPage.clickAcceptPopUp();
 
 
         // The [c] is referring that is case-sensitive
@@ -23,10 +24,10 @@ public class IOSBasics extends IOSBaseTest {
 //        driver.findElement(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeStaticText' AND value ENDSWITH[c] 'Cancel'")).click();
 
 
-        String message = alertViewPage.getConfirmMessage();
+        String message = alertViewsPage.getConfirmMessage();
         Assert.assertEquals(message, "A message should be a short, complete sentence.");
 
-        alertViewPage.clickConfirmButton();
+        alertViewsPage.clickConfirmButton();
 
 
     }

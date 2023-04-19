@@ -1,32 +1,32 @@
 package appiumBasics;
 
+import pages.ios.PhotosApp.PhotosAppPage;
 import testUtils.IOSBaseTest;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import testUtils.IOSPhotosBaseTest;
 
 import java.util.List;
+import java.util.Set;
 
-public class IOSSwipeTest extends IOSBaseTest {
+public class IOSSwipeTest extends IOSPhotosBaseTest {
 
     @Test
     public void IOSSwipeTestDemo() throws InterruptedException {
-        launchPhotosApp();
-        Thread.sleep(3000);
-        driver.findElement(AppiumBy.iOSNsPredicateString("label == 'All Photos'")).click();
-        List<WebElement> allPhotos = driver.findElements(AppiumBy.iOSClassChain("**/XCUIElementTypeCell"));
-        driver.findElement(By.xpath("//XCUIElementTypeCell[1]")).click();
 
-        for (int i = 0; i < allPhotos.size(); i++){
+        PhotosAppPage photosAppPage = new PhotosAppPage(driver);
 
-           System.out.println(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar")).getAttribute("name"));
-           swipeAction("left");
-        }
+        photosAppPage.clickAllPhotosOption();
+        photosAppPage.swipePhotos();
 
         driver.navigate().back();
-        driver.findElement(AppiumBy.accessibilityId("Albums")).click();
+
+        photosAppPage.clickAlbumsOption();
 
     }
+
+
 
 }
